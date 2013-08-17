@@ -23,6 +23,7 @@ vim_funcs = {
 	'expand': vim_get_func('expand', rettype=str),
 	'bufnr': vim_get_func('bufnr', rettype=int),
 	'line2byte': vim_get_func('line2byte', rettype=int),
+	'exists': vim_get_func('exists', rettype=int),
 }
 
 vim_modes = {
@@ -360,3 +361,15 @@ def file_vcs_status(pl, segment_info):
 					'highlight_group': ['file_vcs_status_' + status, 'file_vcs_status'],
 					})
 			return ret
+
+@window_cached
+def syntastic_segment(pl):
+	'''Return the syntastic statusline flag
+	'''
+	if int(vim_funcs['exists']('*SyntasticStatuslineFlag')) > 0:
+		syntastic_flag_func = vim_get_func('SyntasticStatuslineFlag', rettype=str)
+		return [{
+			'contents': str(syntastic_flag_func()),
+		}]
+	else:
+		return None

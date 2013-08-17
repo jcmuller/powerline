@@ -59,6 +59,10 @@
 				"before": " "
 			},
 			{
+				"name": "syntastic_segment",
+				"before": ""
+			},
+			{
 				"type": "string",
 				"highlight_group": ["background"],
 				"draw_soft_divider": false,
